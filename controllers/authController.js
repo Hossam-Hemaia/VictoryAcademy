@@ -130,7 +130,7 @@ exports.postWebHook = async (req, res, next) => {
     console.log(headers, body);
 
     const repoPath = "/home/vacademy";
-    exec("git pull", { cwd: repoPath }, (error, stdout, stderr) => {
+    exec("git pull origin main", { cwd: repoPath }, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing git pull: ${error.message}`);
         return res.status(500).send("Error executing git pull");
