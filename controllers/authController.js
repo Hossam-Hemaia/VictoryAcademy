@@ -46,6 +46,7 @@ exports.postUserLogin = async (req, res, next) => {
       success: true,
       token: token,
       userId: user._id,
+      userName: user.clientName,
       message: "Successfully logged in",
     });
   } catch (err) {
@@ -124,23 +125,23 @@ exports.putResetPassword = async (req, res, next) => {
   }
 };
 
-exports.postWebHook = async (req, res, next) => {
-  try {
-    const { headers, body } = req;
-    console.log(headers, body);
+// exports.postWebHook = async (req, res, next) => {
+//   try {
+//     const { headers, body } = req;
+//     console.log(headers, body);
 
-    const repoPath = "/home/vacademy";
-    exec("git pull origin main", { cwd: repoPath }, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing git pull: ${error.message}`);
-        return res.status(500).send("Error executing git pull");
-      }
-      console.log(`Git pull output: ${stdout}`);
-      console.error(`Git pull error: ${stderr}`);
+//     const repoPath = "/home/vacademy";
+//     exec("git pull origin main", { cwd: repoPath }, (error, stdout, stderr) => {
+//       if (error) {
+//         console.error(`Error executing git pull: ${error.message}`);
+//         return res.status(500).send("Error executing git pull");
+//       }
+//       console.log(`Git pull output: ${stdout}`);
+//       console.error(`Git pull error: ${stderr}`);
 
-      return res.status(200).send("Git pull executed successfully");
-    });
-  } catch (err) {
-    next(err);
-  }
-};
+//       return res.status(200).send("Git pull executed successfully");
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };

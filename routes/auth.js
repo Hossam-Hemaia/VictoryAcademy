@@ -93,6 +93,6 @@ router.put(
   authController.putResetPassword
 );
 
-router.post("/github/webhook", authController.postWebHook);
+//router.post("/github/webhook", authController.postWebHook);
 
 module.exports = router;
